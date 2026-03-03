@@ -4,6 +4,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Skills from "../components/skills";
 import SkillsShow from "../components/skillsshow";
+import ProjectCard from "../components/projectcard";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2 // Each card waits 0.2s after the previous one
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1 }
+};
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -105,229 +121,298 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-5 pb-5 px-4">
-        <div className="flex flex-row max-w-8xl mx-auto text-center">
-          <div className="flex mb-2">
-            <div className="w-200 h-200 mx-auto rounded-full flex items-center justify-center text-6xl">
-              <img src="/profile_pic.jpg" alt="Profile Picture" className="rounded-2xl object-cover " />
+      <section id="home" className="relative min-h-[90vh] flex items-center justify-center py-20 px-6 overflow-hidden bg-white dark:bg-slate-950">
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px]" />
+
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-center justify-center">
+          {/* Profile Picture */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+          >
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] overflow-hidden rounded-2xl border border-white/20 shadow-2xl">
+                <img 
+                  src="/profile_pic.jpg" 
+                  alt="Rashmitha Thewarapperuma" 
+                  className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500 scale-105 hover:scale-100" 
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col justify-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 50 }}
+          </motion.div>
+
+          <div className="order-1 lg:order-2 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-              Rashmitha Thewarapperuma
-            </motion.h1>
+            >
+              <span className="inline-block py-1 px-3 mb-4 text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 rounded-full">
+                Available for Opportunities
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-black mb-6 leading-tight tracking-tight text-slate-900 dark:text-white">
+                Rashmitha <br />
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-indigo-500 to-purple-600">
+                  Thewarapperuma
+                </span>
+              </h1>
+            </motion.div>
+
             <motion.p 
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-4">
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-medium mb-4"
+            >
               Computer Engineering Graduate
             </motion.p>
+
             <motion.p 
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-              Passionate about Software, AI, hardware design, embedded systems, and building innovative solutions at the intersection of software and hardware.
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-lg text-slate-500 dark:text-slate-500 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+            >
+              Bridging the gap between <span className="text-slate-900 dark:text-slate-200 font-semibold">robust hardware</span> and <span className="text-slate-900 dark:text-slate-200 font-semibold">intelligent software</span>. Specializing in AI-driven solutions and high-performance web systems.
             </motion.p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <motion.a 
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                href="#projects" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transform hover:scale-105">
-                View Projects
-              </motion.a>
-              <motion.a 
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                href="#contact" className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-800 px-8 py-3 rounded-lg font-semibold">
-                Contact Me
-              </motion.a>
-            </div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+            >
+              <a 
+                href="#projects" 
+                className="group relative px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold transition-all hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] overflow-hidden"
+              >
+                <span className="relative z-10">Explore Work</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+              
+              <a 
+                href="#contact" 
+                className="px-8 py-4 border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600 dark:hover:border-blue-500 rounded-xl font-bold text-slate-700 dark:text-slate-300 transition-colors"
+              >
+                Let's Talk
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 bg-white dark:bg-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-center">About Me</h2>
-          <div className="space-y-6 text-gray-700 dark:text-gray-300 text-lg">
-            <p>
-              I'm a Computer Engineering student with a deep passion for understanding how computers work from the ground up. My interests span across digital circuit design, embedded systems programming, and modern software development.
-            </p>
-            <p>
-              Through my coursework and personal projects, I've gained hands-on experience with FPGA design, microcontroller programming, machine learning, and full-stack web development. I love tackling complex problems that require both hardware and software expertise.
-            </p>
-            <p>
-              When I'm not coding or designing circuits, you can find me exploring new technologies, contributing to open-source projects, or tinkering with electronics in my home lab.
-            </p>
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <div className="text-4xl mb-2">🎓</div>
-                <h3 className="font-semibold mb-2">Education</h3>
-                <p className="text-sm">B.S. Computer Engineering<br/>GPA: 3.69/4.0</p>
-              </div>
-              <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <div className="text-4xl mb-2">💼</div>
-                <h3 className="font-semibold mb-2">Experience</h3>
-                <p className="text-sm">Intern at VSIS<br/>Network Systems Engineer</p>
-              </div>
-              <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <div className="text-4xl mb-2">🏆</div>
-                <h3 className="font-semibold mb-2">Achievements</h3>
-                <p className="text-sm">1st Runner up<br/>Mobitel Hackathon</p>
-              </div>
+      <section id="about" className="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-900">
+        <div className="absolute top-0 -left-20 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 -right-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
+            <div className="md:w-1/3">
+              <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 dark:text-white">
+                WHO <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-indigo-600">AM I?</span>
+              </h2>
+              <div className="h-2 w-20 bg-blue-500 mt-4 rounded-full" />
             </div>
+
+            <div className="md:w-2/3 space-y-6">
+              <p className="text-xl leading-relaxed text-slate-600 dark:text-slate-300">
+                I’m a <span className="text-slate-900 dark:text-white font-medium">Computer Engineering student</span> obsessed with the bridge between electrons and code. I don't just write software; I build systems from the gates up.
+              </p>
+              <p className="text-lg text-slate-500 dark:text-slate-400">
+                My toolkit ranges from <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md text-sm font-mono">Networks</span> to 
+                <span className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md text-sm font-mono ml-2">Full-stack Web</span>. I thrive in the space where hardware constraints meet software possibilities.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                icon: "icons/education.png", 
+                label: "Education", 
+                title: "B.S. Computer Engineering", 
+                sub: "GPA: 3.69/4.0",
+                color: "blue" 
+              },
+              { 
+                icon: "icons/gear.png", 
+                label: "Experience", 
+                title: "Intern @ VSIS", 
+                sub: "Network Systems Engineer",
+                color: "indigo" 
+              },
+              { 
+                icon: "icons/medal.png", 
+                label: "Achievements", 
+                title: "1st Runner Up", 
+                sub: "Mobitel Hackathon",
+                color: "cyan" 
+              },
+            ].map((item, i) => (
+              <div key={i} className="relative flex flex-col justify-end group p-8 bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10">
+                {/* <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">{item.icon}</div> */}
+                <img src={item.icon} alt={item.label} className="absolute top-1 right-1 w-24 h-24 mb-4 transition delay-150 duration-300 ease-in-out group-hover:-translate-y-1 group-hover:scale-130" />
+                <p className="text-xs uppercase tracking-widest font-bold text-slate-400 mb-1">{item.label}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm italic">{item.sub}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4">
+      <section id="projects" className="py-24 px-6 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <div key={project.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 overflow-hidden">
-                <div className="bg-gradient-to-br from-blue-500 to-purple-600 h-48 flex items-top justify-center text-8xl">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <a href={project.github} className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-semibold">
-                      GitHub →
-                    </a>
-                    {project.demo && (
-                      <a href={project.demo} className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-semibold">
-                        Live Demo →
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+                Featured <span className="text-blue-600">Projects</span>
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 max-w-md">
+                A collection of systems ranging from low-level hardware design to high-level web architectures.
+              </p>
+            </div>
+            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800 hidden md:block mb-4 mx-8" />
           </div>
+
+          <motion.div 
+            variants={container} 
+            initial="hidden" 
+            whileInView="show" 
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {projects.map(project => (
+              <motion.div variants={item} key={project.id}>
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {projects.map((project) => (
+              <ProjectCard project={project} key={project.id} />
+            ))}
+          </div> */}
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 bg-white dark:bg-gray-800">
         <div className="max-w-6xl mx-auto">
-          {/* <h2 className="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
-          <Skills/>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">{category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((skill, index) => (
-                    <span key={index} className="px-3 py-1 bg-white dark:bg-gray-600 rounded-md text-sm shadow-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div> */}
           <SkillsShow />
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
-                I'm always interested in hearing about new opportunities, collaborations, or just chatting about technology. Feel free to reach out!
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center text-2xl">
-                    📧
+      <section id="contact" className="py-24 px-6 bg-slate-50 dark:bg-slate-950">
+        <div className="max-w-5xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+              Let's <span className="text-blue-600">Connect</span>
+            </h2>
+            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
+              Have a question or a proposal? I'm always open to discussing new projects, 
+              creative ideas, or opportunities to be part of your visions.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Contact Info - Takes 2 columns */}
+            <div className="lg:col-span-2 space-y-6">
+              {[
+                { 
+                  label: "Email", 
+                  value: "rashmithatd@gmail.com", 
+                  icon: "mail.png", 
+                  link: "mailto:rashmithatd@gmail.com" 
+                },
+                { 
+                  label: "LinkedIn", 
+                  value: "Rashmitha Thewarapperuma", 
+                  icon: "linkedin.png", 
+                  link: "https://www.linkedin.com/in/rashmitha-thewarapperuma-54b9122b5" 
+                },
+                { 
+                  label: "GitHub", 
+                  value: "RPrashan99", 
+                  icon: "github.png", 
+                  link: "https://github.com/RPrashan99" 
+                }
+              ].map((info, i) => (
+                <a 
+                  key={i}
+                  href={info.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-5 p-5 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/5"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center text-2xl bg-slate-100 dark:bg-slate-800 rounded-xl group-hover:scale-110 transition-transform">
+                    <img src={`${info.icon}`} alt={info.label} className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                    <p className="font-semibold">rashmithatd@gmail.com</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">{info.label}</p>
+                    <p className="text-slate-900 dark:text-slate-200 font-semibold truncate max-w-[180px] sm:max-w-none">
+                      {info.value}
+                    </p>
                   </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center text-2xl">
-                    🔗
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">LinkedIn</p>
-                    <p className="font-semibold">https://www.linkedin.com/in/rashmitha-thewarapperuma-54b9122b5</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center text-2xl">
-                    💻
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">GitHub</p>
-                    <p className="font-semibold">https://github.com/RPrashan99</p>
-                  </div>
-                </div>
-              </div>
+                </a>
+              ))}
             </div>
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Name</label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                    required
-                  />
+
+            {/* Contact Form - Takes 3 columns */}
+            <div className="lg:col-span-3 bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Name</label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      placeholder="John Doe"
+                      className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-all outline-none"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Email</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      placeholder="john@example.com"
+                      className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-all outline-none"
+                      required
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Email</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Message</label>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1">Message</label>
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                    rows={4}
+                    placeholder="How can I help you?"
+                    className="w-full px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-all outline-none resize-none"
                     required
                   ></textarea>
                 </div>
+
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition transform hover:scale-105"
+                  className="w-full group relative flex items-center justify-center gap-3 bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all overflow-hidden shadow-lg shadow-blue-500/20"
                 >
-                  Send Message
+                  <span className="relative z-10">Send Message</span>
+                  <span className="group-hover:translate-x-1 transition-transform relative z-10">🚀</span>
                 </button>
               </form>
             </div>

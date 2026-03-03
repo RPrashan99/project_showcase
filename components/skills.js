@@ -15,22 +15,33 @@ const demoitems = {
     ]
 }
 
-export default function Skills({item = demoitems}) {
-
-    return (
-        <div className="flex flex-col justify-center overflow-hidden w-full mb-10">
-            <h2 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">{item.name}</h2>
-            <div className="border border-gray-300 dark:border-gray-600 rounded-2xl">
-                <motion.div
-                    style={{ display: "flex", width: "100%" }}
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-                    >
-                    {item.items.concat(item.items).map((src, index) => (
-                        <img key={index} src={src.imgpath || src} alt={`Skill ${index}`} className="rounded-2xl object-cover w-16 h-16 m-4" />
-                    ))}
-                </motion.div>
+export default function Skills({ item = demoitems }) {
+  return (
+    <div className="w-full">
+      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+        <span className="w-2 h-6 bg-blue-600 rounded-full" />
+        {item.name}
+      </h3>
+      
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+        {item.items.map((skill, index) => (
+          <div 
+            key={index}
+            className="group relative flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+          >
+            <div className="w-12 h-12 mb-3 grayscale group-hover:grayscale-0 transition-all duration-300">
+              <img 
+                src={skill.imgpath} 
+                alt={skill.name} 
+                className="w-full h-full object-contain" 
+              />
             </div>
-        </div>
-    )
+            <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider group-hover:text-blue-600 dark:group-hover:text-blue-400">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
