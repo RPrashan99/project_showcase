@@ -24,3 +24,40 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.block {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.block.enter {
+  animation: floatReveal 0.6s both ease-out;
+}
+
+.block.exit {
+  animation: floatExit 0.6s both ease-in;
+}
+
+/* Enter animation */
+@keyframes floatReveal {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Exit animation */
+@keyframes floatExit {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+}
