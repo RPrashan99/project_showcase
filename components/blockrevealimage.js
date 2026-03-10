@@ -29,7 +29,6 @@ export default function BlockRevealImage({ src, rows = 7, cols = 7 }) {
 
   return (
     <div className="flex flex-col">
-      <div className="mb-4 text-xl font-bold">{phase}</div>
       <div
         className="grid"
         style={{

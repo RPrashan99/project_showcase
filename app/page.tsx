@@ -5,6 +5,10 @@ import { useState } from "react";
 import Skills from "../components/skills";
 import SkillsShow from "../components/skillsshow";
 import ProjectCard from "../components/projectcard";
+import BlockRevealImage from "../components/blockrevealimage";
+import ProjectModal from "../components/projectmodal";
+import { arch } from "os";
+import { features } from "process";
 
 const container = {
   hidden: { opacity: 0 },
@@ -14,7 +18,7 @@ const container = {
       staggerChildren: 0.2 // Each card waits 0.2s after the previous one
     }
   }
-};
+};  
 
 const item = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -27,6 +31,7 @@ export default function Home() {
     email: "",
     message: ""
   });
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,57 +43,115 @@ export default function Home() {
   const projects = [
     {
       id: 1,
+      projectcode: "EMOIFY",
       title: "EMOIFY - AI Based Emotion Recognition and Personalized Recommendation System",
       description: "AI-based emotion recognition and personalized recommendation system using deep learning and multi AI workflow.",
       technologies: ["Java", "JavaFX", "Python", "Flask", "SQLite3", "Langchain", "OpenAI API", "LLM"],
       github: "https://github.com/RPrashan99/JavaFXApplication_EMOFI.git",
       demo: "https://smart-home-demo.com",
-      image: "/projects/Emoify.jpg"
+      image: "/projects/Emoify.jpg",
+      features: [
+        "Emotion Recognition: Real time vision deep learning models to analyze facial expressions",  
+        "Personalized Recommendations: Provides personalized content recommendations, such as music, movies, or activities",
+        "Multi AI Workflow: Includes emotion algorithms and recommendation LLM",
+        "User-Friendly Interface: JavaFX interface that allows users to easily interact with the system"
+      ],
+      architectureImage: "/projects/EMOIFY/softwareArch.png",
+      gallery:[
+        "/projects/EMOIFY/gallery/FloatingBtn.png",
+        "/projects/EMOIFY/gallery/InitStart.png",
+        "/projects/EMOIFY/gallery/Start.png",
+        "/projects/EMOIFY/gallery/Register.png",
+        "/projects/EMOIFY/gallery/InitAppAdd.png",
+        "/projects/EMOIFY/gallery/Home.png",
+        "/projects/EMOIFY/gallery/Apps.png",
+        "/projects/EMOIFY/gallery/AppsAdd.png",
+        "/projects/EMOIFY/gallery/Settings.png",
+        "/projects/EMOIFY/gallery/Chat.png",
+        "/projects/EMOIFY/gallery/Recom.png",
+        "/projects/EMOIFY/gallery/RecomExpand.png"
+      ]
     },
     {
       id: 2,
+      projectcode: "BOOKFAIR",
       title: "Book Fair Stall Reservation Management System",
       description: "Computer vision project using OpenCV and YOLO for vehicle detection and traffic density analysis. Deployed on Raspberry Pi.",
       technologies: ["ReactJS", "Springboot", "PostgreSQL", "Kubernetes", "Docker", "Git", "Jenkins"],
       github: "https://github.com/DulshanSiriwardhana/CIBF-Reservation-Portal.git",
       demo: null,
-      image: "/projects/BookFair.png"
+      image: "/projects/BookFair.png",
+      features: [
+        "Stall Reservation: View available stalls, make reservations, and manage their bookings through a user-friendly web interface.",
+        "Admin Dashboard: Manage stall availability, view reservation statistics, and handle user inquiries",
+        "Real-time Updates: Real-time updates on stall availability and reservation status to ensure a smooth booking experience.",
+        "Scalable Architecture: Built with a microservices architecture using Spring Boot and deployed on Kubernetes for scalability and reliability."
+      ],
+      architectureImage: "/projects/BOOKFAIR/softwareArch.png"
     },
     {
       id: 3,
+      projectcode: "CAKESHOP",
       title: "Web Based Online Cake Shop System with DevOps",
       description: "A modern e-commerce platform with seamless browsing, ordering, and inventory management for both users and administrators.",
       technologies: ["ReactJS", "NodeJS", "PostgreSQL", "Kubernetes", "Docker", "Git", "Jenkins"],
       github: "https://github.com/WijesekaraDNM/cake-shop-system-microservices.git",
       demo: null,
-      image: "/projects/CakeShop.png"
+      image: "/projects/CakeShop.png",
+      features: [
+        "Seamless Browsing: Users can easily browse through a wide variety of cakes and products.",
+        "Easy Ordering: The system allows users to place orders with a simple and intuitive interface.",
+        "Inventory Management: Administrators can efficiently manage inventory levels and track product availability."
+      ],
+      architectureImage: "/projects/CAKESHOP/softwareArch.png"
     },
     {
       id: 4,
+      projectcode: "GAMEREVIEWS",
       title: "Game Review Sentiment Analyzer and Summarizer",
       description: "Analyze sentiment of game reviews and generate summaries using NLP techniques.",
       technologies: ["ReactJS", "Python", "Flask", "NLP", "RoBERTa", "BART", "MLOps"],
       github: "https://github.com/RPrashan99/Game-Review-Sentiment-Analysis-Web-app.git",
       demo: null,
-      image: "/projects/GameReview.png"
+      image: "/projects/GameReview.png",
+      features: [
+        "Sentiment Analysis: Analyzes the sentiment of game reviews using advanced NLP techniques.",
+        "Summary Generation: Generates concise summaries of game reviews for quick insights.",
+        "User-Friendly Interface: Provides an intuitive interface for users to interact with the system."
+      ],
+      architectureImage: "/projects/GAMEREVIEWS/softwareArch.png"
     },
     {
       id: 5,
+      projectcode: "DISASTERMANAGEMENT",
       title: "Web based Disaster Management System",
       description: "A web application for managing disaster response and recovery operations.",
       technologies: ["ReactJS", "NodeJS", "MongoDB", "Express", "Git"],
       github: "https://github.com/RPrashan99/Disaster_Management_System.git",
       demo: null,
-      image: "/projects/DisasterWeb.png"
+      image: "/projects/DisasterWeb.png",
+      features: [
+        "Real-time Monitoring: Provides real-time updates on disaster situations and response efforts.",
+        "Resource Management: Allows for efficient allocation and tracking of resources during disaster response.",
+        "Communication Platform: Facilitates seamless communication between emergency responders and affected communities."
+      ],
+      architectureImage: "/projects/DISASTERMANAGEMENT/softwareArch.png"
     },
     {
       id: 6,
+      projectcode: "TRAVELHELPER",
       title: "Travel Helper Mobile Application",
       description: "A mobile application that helps travelers plan trips, find local attractions, and manage travel itineraries.",
       technologies: ["Kotlin Jetpack", "Firebase", "Android Studio", "Google Maps API", "Figma"],
       github: "https://github.com/RPrashan99/Travel-Helper.git",
       demo: null,
-      image: "/projects/TravelHelper.png"
+      image: "/projects/TravelHelper.png",
+      features: [
+        "Trip Planning: Helps users plan their trips with ease, including destination selection and itinerary creation.",
+        "Local Attractions: Provides information about local attractions and activities at various destinations.",
+        "Itinerary Management: Allows users to manage and update their travel itineraries in real-time."
+      ],
+      architectureImage: "/projects/TRAVELHELPER/softwareArch.png"
     }
   ];
 
@@ -127,7 +190,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-center justify-center">
           {/* Profile Picture */}
-          <motion.div 
+          {/* <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -144,7 +207,9 @@ export default function Home() {
                 />
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
+
+          <BlockRevealImage src="/profile_pic.jpg" rows={6} cols={6} />
 
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <motion.div
@@ -289,7 +354,7 @@ export default function Home() {
             className="grid md:grid-cols-3 gap-8"
           >
             {projects.map(project => (
-              <motion.div variants={item} key={project.id}>
+              <motion.div variants={item} key={project.id} onClick={() => setSelectedProject(project)}>
                 <ProjectCard project={project} />
               </motion.div>
             ))}
@@ -300,6 +365,11 @@ export default function Home() {
               <ProjectCard project={project} key={project.id} />
             ))}
           </div> */}
+          <ProjectModal 
+            project={selectedProject} 
+            isOpen={!!selectedProject} 
+            onClose={() => setSelectedProject(null)} 
+          />
         </div>
       </section>
 
