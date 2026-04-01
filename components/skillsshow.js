@@ -1,11 +1,13 @@
 import skilldata from "../data/skillsdata.json";
 import Skills from "../components/skills";
+import { BASE_PATH } from "@/utils/config";
 
 export default function SkillsShow() {
   return (
     <section id="skills" className="relative py-24 px-6 bg-white dark:bg-gray-900">
 
-      <div className="absolute inset-0 bg-[url(/bg/pexels.jpg)] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"/>
+      <div className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110`}
+        style={{ backgroundImage: `url(${BASE_PATH}/bg/pexels.jpg)` }}/>
 
       <div className="absolute inset-0 bg-blue-900/30 backdrop-blur-sm" />
 

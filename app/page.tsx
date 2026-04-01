@@ -45,11 +45,12 @@ export default function Home() {
     {
       id: 1,
       projectcode: "EMOIFY",
+      category: "AI & Computer Vision",
       title: "EMOIFY - AI Based Emotion Recognition and Personalized Recommendation System",
       description: "AI-based emotion recognition and personalized recommendation system using deep learning and multi AI workflow.",
       technologies: ["Java", "JavaFX", "Python", "Flask", "SQLite3", "Langchain", "OpenAI API", "LLM"],
       github: "https://github.com/RPrashan99/JavaFXApplication_EMOFI.git",
-      demo: "https://smart-home-demo.com",
+      demo: null,
       image: `${BASE_PATH}/projects/Emoify.jpg`,
       features: [
         "Emotion Recognition: Real time vision deep learning models to analyze facial expressions",  
@@ -76,6 +77,7 @@ export default function Home() {
     {
       id: 2,
       projectcode: "BOOKFAIR",
+      category: "Web Development & DevOps",
       title: "Book Fair Stall Reservation Management System",
       description: "Computer vision project using OpenCV and YOLO for vehicle detection and traffic density analysis. Deployed on Raspberry Pi.",
       technologies: ["ReactJS", "Springboot", "PostgreSQL", "Kubernetes", "Docker", "Git", "Jenkins"],
@@ -93,6 +95,7 @@ export default function Home() {
     {
       id: 3,
       projectcode: "CAKESHOP",
+      category: "Web Development & DevOps",
       title: "Web Based Online Cake Shop System with DevOps",
       description: "A modern e-commerce platform with seamless browsing, ordering, and inventory management for both users and administrators.",
       technologies: ["ReactJS", "NodeJS", "PostgreSQL", "Kubernetes", "Docker", "Git", "Jenkins"],
@@ -109,6 +112,7 @@ export default function Home() {
     {
       id: 4,
       projectcode: "GAMEREVIEWS",
+      category: "AI & NLP",
       title: "Game Review Sentiment Analyzer and Summarizer",
       description: "Analyze sentiment of game reviews and generate summaries using NLP techniques.",
       technologies: ["ReactJS", "Python", "Flask", "NLP", "RoBERTa", "BART", "MLOps"],
@@ -125,6 +129,7 @@ export default function Home() {
     {
       id: 5,
       projectcode: "DISASTERMANAGEMENT",
+      category: "Web Development",
       title: "Web based Disaster Management System",
       description: "A web application for managing disaster response and recovery operations.",
       technologies: ["ReactJS", "NodeJS", "MongoDB", "Express", "Git"],
@@ -141,6 +146,7 @@ export default function Home() {
     {
       id: 6,
       projectcode: "TRAVELHELPER",
+      category: "Mobile Development",
       title: "Travel Helper Mobile Application",
       description: "A mobile application that helps travelers plan trips, find local attractions, and manage travel itineraries.",
       technologies: ["Kotlin Jetpack", "Firebase", "Android Studio", "Google Maps API", "Figma"],
@@ -153,6 +159,29 @@ export default function Home() {
         "Itinerary Management: Allows users to manage and update their travel itineraries in real-time."
       ],
       architectureImage: `${BASE_PATH}/projects/TRAVELHELPER/softwareArch.png`
+    },
+    {
+      id: 7,
+      projectcode: "DARTLOCK",
+      category: "Blockchain & Web3",
+      title: "DigitalArt Copyright Protection Application",
+      description: "A blockchain based application that allow user to register and verify artworks to protect copyright. Users can also transfer ownership of their artworks securely on the blockchain.",
+      technologies: ["Solidity", "Ethereum", "HardHat", "IPFS", "EthersJS", "ReactJS"],
+      github: "https://github.com/RPrashan99/DigitalArt_Copyright_Protection.git",
+      demo: "https://youtu.be/TNAPR35DaWg?si=-Zd9ut6eIOrOwzA8",
+      image: `${BASE_PATH}/projects/DartLock.png`,
+      features: [
+        "Art Register: Allows artists to register their artworks on the blockchain, creating a secure and immutable record of ownership.",
+        "Art Verify: Allows users to verify the authenticity and ownership of artworks by checking the blockchain records.",
+        "Art Ownership Transfer: Allows users to transfer ownership of their artworks securely on the blockchain."
+      ],
+      architectureImage: `${BASE_PATH}/projects/DARTLOCK/softwareArch.png`,
+      gallery: [
+        `${BASE_PATH}/projects/DARTLOCK/gallery/Home.png`,
+        `${BASE_PATH}/projects/DARTLOCK/gallery/Functions.png`,
+        `${BASE_PATH}/projects/DARTLOCK/gallery/ArtGallery.png`,
+        `${BASE_PATH}/projects/DARTLOCK/gallery/OwnerTransfer.png`,
+      ]
     }
   ];
 

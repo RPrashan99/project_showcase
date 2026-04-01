@@ -116,6 +116,23 @@
         ]
     },
     {
+        "name": "Blockchain Technologies",
+        "items": [
+            {
+                "name": "Solidity",
+                "imgpath": "/skills/solidity.png"
+            },
+            {
+                "name": "Ethereum",
+                "imgpath": "/skills/ethereum.png"
+            },
+            {
+                "name": "IPFS",
+                "imgpath": "/skills/ipfs.png"
+            }
+        ]
+    },
+    {
         "name": "Tools & Platforms",
         "items": [
             {
